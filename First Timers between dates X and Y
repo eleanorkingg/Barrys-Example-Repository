@@ -1,0 +1,17 @@
+select								
+participant_customer_id,								
+participant_customer_first_name,								
+participant_customer_last_name,								
+participant_customer_email,								
+(mode() within group (								
+order by vma.location)) as top_studio								
+from view_mt_attendance vma								
+where check_in = 1								
+and "first" = 1								
+and class_date between '2024-02-22' and '2024-05-29'								
+and region not in ('Miami', 'Manchester', 'Liverpool', 'London', 'Barry''s X','Calgary','Toronto','Vancouver')								
+group by participant_customer_id,								
+participant_customer_first_name,								
+participant_customer_last_name,								
+participant_customer_email								
+								
